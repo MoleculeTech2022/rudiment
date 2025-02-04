@@ -57,8 +57,8 @@
                 <li class="nav-item"><a href="about.html" class="nav-link pl-0">About</a></li>
                 <li class="nav-item"><a href="student.php" class="nav-link">Student</a></li>
                 <li class="nav-item"><a href="teacher.html" class="nav-link">Teacher</a></li>
-                <li class="nav-item"><a href="courses.php" class="nav-link">Courses</a></li>
-                <li class="nav-item"><a href="pricing.php" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="courses.php" class="nav-link">Classes</a></li>
+                <li class="nav-item"><a href="pricing.php" class="nav-link">Admission</a></li>
                 <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
                 <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
             </ul>
