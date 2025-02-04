@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Form</title>
+    <style>
+        .bold-text {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form action="insert.php" method="post">
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" name="fname" required oninput="updateBoldText()"><br>
+        <span id="fnameBold" class="bold-text"></span><br><br>
+
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" name="lname" required oninput="updateBoldText()"><br>
+        <span id="lnameBold" class="bold-text"></span><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function updateBoldText() {
+            document.getElementById('fnameBold').textContent = document.getElementById('fname').value;
+            document.getElementById('lnameBold').textContent = document.getElementById('lname').value;
+        }
+    </script>
+</body>
+</html>

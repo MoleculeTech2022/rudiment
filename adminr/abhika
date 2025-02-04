@@ -1,0 +1,440 @@
+<?php
+session_start();
+require 'dbcon.php';
+// Check if 'sid' is set in the URL
+if (isset($_GET['sid'])) {
+  // Sanitize the input
+  $student_id = mysqli_real_escape_string($con, $_GET['sid']);
+
+  // Construct your SQL query
+  $query = "SELECT * FROM students
+            JOIN payment ON students.sid = payment.sid
+            JOIN parents ON students.sid = parents.sid
+            JOIN acdyear ON students.sid = acdyear.sid
+            WHERE students.sid = '$student_id'";
+$query_run = mysqli_query($con, $query);
+
+if ($query_run) {
+  // Check if there are any matching records
+  if (mysqli_num_rows($query_run) > 0) {
+    $student = mysqli_fetch_assoc($query_run);
+
+  ?>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Sidebar</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#search").on("keyup", function () {
+          var searchText = $(this).val().toLowerCase();
+
+          $.ajax({
+            url: "payfilter.php", // Create a PHP script for filtering
+            method: "POST",
+            data: { search: searchText },
+            success: function (data) {
+              $("#student-table tbody").html(data);
+            }
+          });
+        });
+      });
+    </script>
+
+
+    <style>
+      /* Google Fonts - Poppins */
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        min-height: 100%;
+        background: #fdfeff;
+      }
+
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 260px;
+        padding: 20px 0;
+        background-color: #fff;
+        box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        margin: 0 24px;
+      }
+
+      .logo .menu-icon {
+        color: #333;
+        font-size: 24px;
+        margin-right: 14px;
+      }
+
+      .logo .logo-name {
+        color: #333;
+        font-size: 22px;
+        font-weight: 500;
+      }
+
+      .sidebar-content {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 30px 16px;
+      }
+
+      .list {
+        list-style: none;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        margin: 8px 0;
+        padding: 14px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+      }
+
+      .nav-link:hover {
+        background-color: #4070f4;
+      }
+
+      .icon {
+        margin-right: 14px;
+        font-size: 20px;
+        color: #707070;
+      }
+
+      .link {
+        font-size: 16px;
+        color: #707070;
+        font-weight: 400;
+      }
+
+      .nav-link:hover .icon,
+      .nav-link:hover .link {
+        color: #fff;
+      }
+
+      .card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+      }
+
+      .card h2 {
+        margin: 0;
+        padding-bottom: 10px;
+      }
+
+      .card ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .card li {
+        margin-bottom: 10px;
+      }
+
+      * {
+        /* Change your font family */
+        font-family: sans-serif;
+      }
+
+      .content-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        width: 900px;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .content-table thead tr {
+        background-color: aliceblue;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      .content-table th,
+      .content-table td {
+        padding: 12px 15px;
+      }
+
+      .content-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+      }
+
+      .content-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+
+      .content-table tbody tr:last-of-type {
+        border-bottom: 2px solid #ffffff;
+      }
+
+      .content-table tbody tr.active-row {
+        font-weight: bold;
+        color: #000000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <i class="bx bx-menu menu-icon"></i>
+          <span class="logo-name">Rudiment</span>
+        </div>
+
+        <div class="sidebar-content" style="margin-top:-20px;">
+          <ul class="lists">
+            <li class="list">
+              <a href="index.html" class="nav-link">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="link">Dashboard</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="students.php" class="nav-link">
+                <i class="bx bx-bar-chart-alt-2 icon"></i>
+                <span class="link">Students</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="teachers.php" class="nav-link">
+                <i class="bx bx-bell icon"></i>
+                <span class="link">Teachers</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="payments.php" class="nav-link" style="background-color: #4070f4;">
+                <i class="bx bx-message-rounded icon" style="color: #fff;"></i>
+                <span class="link" style="color: #fff;">Payments</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="billing.html" class="nav-link">
+                <i class="bx bx-pie-chart-alt-2 icon"></i>
+                <span class="link">Billing</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-heart icon"></i>
+                <span class="link">Likes</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-folder-open icon"></i>
+                <span class="link">Files</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="bottom-content">
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-cog icon"></i>
+                <span class="link">Settings</span>
+              </a>
+            </li>
+          </div>
+        </div>
+      </nav>
+
+      <div class="navbar"
+        style="margin-left:261px;width:80%;height: 70px;position: absolute;background-color: rgb(241, 246, 251);display: flex;">
+        <div class="title" style="margin-top: 22px;margin-left: 30px;">
+          <span>Payments</span>
+          <div name="academic_year" id="academic_year" style="margin-top:-17px;margin-left:10px;">
+            <select
+              style="width:90px;height:30px;padding:5px;border:none;border-radius:20px;margin-left:70px;margin-top:-30px;">
+              <option value="2023-24">2023-24</option>
+              <option value="2024-25">2024-25</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="search-bar">
+          <input type="search" placeholder="Search Your Payment..." id="search" name="search"
+            style="width:300px;height:35px;margin-top:17px;border: none;border-radius: 20px;padding:10px;margin-left:110px;">
+        </div>
+        <div class="icons" style="margin-left:25px;margin-top:25px;">
+
+          <a href="admission.php"><i class='bx bx-message-square-add icon'></i></a>
+          <i class="bx bx-heart icon"></i>
+          <i class="bx bx-mail-send icon"></i>
+          <i class="bx bx-map icon"></i>
+          <i class="bx bx-user icon"></i>
+        </div>
+        <div class="log-out-btn" style="margin-left:30px;margin-top:20px;">
+          <a href="logout.php">
+            <button
+              style="width:130px;height: 30px;background-color:#fff;border-width: 1px;border-radius: 20px;">LOG-OUT</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="dashboard-contents"
+      style="margin-left:261px;width:900px;height:700px;background-color: #ffffff ;position: absolute;margin-top: 71px;">
+
+      <div class="dabba" style="width:900px;height:100px;background-color:aliceblue;margin-left:20px;margin-top:20px;">
+        <span hidden>Student id : <?php echo $student['sid']; ?></span>
+        <div class="student-name" style="margin-top:10px;">
+      <span style="margin-left:10px;">Student Name : <?php echo $student['fname']; ?> <?php echo $student['mname']; ?> <?php echo $student['lname']; ?></span><br>
+        </div>
+        <span>Academic year : <?php echo $student['acdyear']; ?></span>
+      <span>Class : <?php echo $student['acdclass']; ?></span>
+      </div>
+      
+      <?php
+      $cssStyles = <<<EOD
+<style>
+    /* Your CSS styles go here */
+    .card {
+        background-color: #E5E5EA;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        display: flex;
+        margin-top:10px;
+        flex-direction: column; /* Display elements in a column layout */
+    }
+
+    .message {
+        font-size: 16px;
+        margin-right:760px;
+    }
+
+    .timestamp {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .comment {
+        margin-top: 0px;
+        margin-right:750px; /* Add space between cdate and comment */
+    }
+    .set {
+      margin-top: -24px;
+      margin-left: 130px; /* Add space between cdate and comment */
+  }
+
+    /* Style the icon */
+    .icon {
+        font-size: 24px;
+        color: #333;
+    }
+</style>
+EOD;
+
+      echo $cssStyles; // Output the CSS styles
+// SQL query to fetch payment information for the selected student
+    
+
+
+      $sql = "SELECT * FROM payment WHERE sid = ' $student_id'";
+     
+      $query_run = mysqli_query($con, $sql);
+
+      if (mysqli_num_rows($query_run) > 0) {
+        foreach ($query_run as $student) {
+          // var_dump($student);
+          echo '<div class="card">';
+          echo '<div class="comment">Amt : <span>' . $student['payamt'] . '</span></div>';
+          echo '<div class="set">Mode : <span>' . $student['paymode'] . '</span></div>';
+          echo '<div class="message"> Date : <span>' . $student['paydate'] . '</span></div>';
+          echo '<a href="payment_edit.php?payid=' . $student['payid'] . '">';
+          echo '<i class="bx bx-edit payment-edit-icon"></i>';
+          echo '</a>';
+          echo '</div>';
+
+        }
+      } else {
+        echo "No payments found.";
+      }
+      ?>
+
+
+
+    </div>
+
+
+    </div>
+    </div>
+    <script>
+      function updateStudentTable(selectedYear) {
+        $.ajax({
+          url: "filter_payment.php",
+          method: "POST",
+          data: { academic_year: selectedYear },
+          success: function (data) {
+            $("#student-table tbody").html(data);
+          },
+          error: function () {
+            $("#student-table tbody").html('<tr><td colspan="6">Error loading data.</td></tr>');
+          }
+        });
+      }
+
+      $(document).ready(function () {
+        // Initial table load with default academic year
+        updateStudentTable("2024-25");
+        updateStudentTable("2023-24");
+
+        // Handle academic year change
+        $("#academic_year").change(function () {
+          var selectedYear = $(this).val();
+          updateStudentTable(selectedYear);
+        });
+      });
+    </script>
+  </body>
+
+  </html>
+  <?php
+ } else {
+  echo "<h4>No Such ID Found</h4>";
+}
+} else {
+echo "Error: " . mysqli_error($con);
+}
+} else {
+  echo "<h4>No Such ID Found</h4>";
+}
+
+?>

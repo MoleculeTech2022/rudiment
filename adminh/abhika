@@ -1,0 +1,43 @@
+<tbody>
+  <?php
+  $count = 0;
+  $sqlExpense = "SELECT * FROM expense JOIN expensecategory on expense.expcatgid = expensecategory.expCatgid";
+  // $query = "SELECT * FROM payment JOIN students on students.sid = payment.sid WHERE payment.sid != '' ORDER BY payment.paydate ASC";
+  $resultExpense = mysqli_query($con, $sqlExpense);
+  // var_dump($query_run);
+  if (mysqli_num_rows($resultExpense) > 0) {
+      while ($rowsExpense = mysqli_fetch_assoc($resultExpense)) {
+          ?>
+  <tr>
+    <td>
+      <?= $count + 1 ?>
+    </td>
+    <td>
+      <?= $rowsExpense['expCatgTitle']; ?>
+    </td>
+    <td>
+      <?= $rowsExpense['expamt']; ?>
+    </td>
+    <td>
+      <?= $rowsExpense['expdate']; ?>
+    </td>
+    <td>
+      <?= $rowsExpense['expmode']; ?>
+
+    </td>
+    <td>
+      <!-- // Edit on student list  -->
+      <a href="exp_edit.php?expCatgid=1" style="text-decoration:none;">
+        <i class="bx bx-edit icon"></i>
+      </a>
+    </td>
+  </tr>
+  <?php
+          $count++;
+      }
+  } else {
+      echo "<h5> No Record Found </h5>";
+  }
+  ?>
+
+</tbody>

@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.test-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+#timer {
+    font-size: 1.5em;
+    color: red;
+}
+
+button {
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+}

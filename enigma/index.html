@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma Detective Agency</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <h2 class="logo"><a href="#">Enigma Detective Agency</a></h2>
+        <input type="checkbox" id="menu-toggler">
+        <label for="menu-toggler" id="hamburger-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18V11H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </label>
+        <ul class="all-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="homepage" id="home">
+      <div class="content">
+        <div class="text">
+          <h1 id="homepage_slogan"><span id="typing-text">Unlocking Mysteries, Revealing Truths</span></h1>
+          <p>
+            Discovering Truths, One Clue at a Time: Welcome to the Heart of Investigation! <br> Where Curiosity Meets Clarity: Step into the World of Discovery with Us!</p>
+        </div>
+        <a href="#services">Our Services</a>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <h2>Our Services</h2>
+      <p>Explore our wide range of camping gear services.</p>
+      <ul class="cards">
+        <li class="card">
+          <img src="images/love_affair.jpeg" alt="img">
+          <h3>Love Affair</h3>
+          <p>Doubts about your partner's loyalty? Our detectives are experts in uncovering the truth behind love affairs and relationships.
+          </p>
+        </li>
+        <li class="card">
+          <img src="images/surveillance_services_img.jpeg" alt="img">
+          <h3>Surveillance Services</h3>
+          <p>Monitoring and gathering evidence for various situations.
+          </p>
+        </li>
+        <li class="card">
+          <img src="images/missing_person_img.jpeg" alt="img">
+          <h3>Missing Person</h3>
+          <p>Helping families locate missing loved ones or individuals.
+          </p>
+        </li>
+        <li class="card">
+          <img src="images/financial_investigation.jpeg" alt="img">
+          <h3>Financial Investigation</h3>
+          <p>Uncovering financial fraud, asset tracing, and due diligence.
+          </p>
+        </li>
+        <li class="card">
+          <img src="images/marriage_investigation.jpeg" alt="img">
+          <h3>Marriage Investigation</h3>
+          <p>Suspect infidelity or want to verify information before tying the knot? We conduct thorough investigations to provide you with the clarity you need.
+          </p>
+        </li>
+
+        <li class="card">
+          <img src="images/cyber_investigation.jpeg" alt="img">
+          <h3>Cyber Investigation</h3>
+          <p>Illuminate your campsite with our reliable and energy-efficient camping lights.</p>
+        </li>
+
+        <li class="card">
+          <img src="images/corporate_investigation.jpeg" alt="img">
+          <h3>Corporate Investigation</h3>
+          <p>Conducting background checks on employees, investigating fraud, and protecting company interests.
+          </p>
+        </li>
+        <li class="card">
+          <img src="images/personal_investigation.jpeg" alt="img">
+          <h3>Personal Investigation</h3>
+          <p>Relax and unwind in style with our comfortable and portable camping chairs.</p>
+        </li>
+        <li class="card">
+          <img src="images/pollitical_investigation_img.jpeg" alt="img">
+          <h3>Pollitical Investigation</h3>
+          <p>Whether it's for business partnerships, political alliances, or personal reasons, we offer comprehensive background checks to ensure transparency and security.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <p>Contact us today to learn more about how we can assist you in uncovering the truth.
+      </p>
+      <div class="row">
+        <div class="col information">
+          <div class="contact-details">
+            <p><i class="fas fa-map-marker-alt"></i> Kaspate Wasti Road,Wakad,Pune</p>
+            <p><i class="fas fa-envelope"></i> info@enigmadetectiveagency.com</p>
+            <p><i class="fas fa-phone"></i> +91 8975190519</p>
+            <p><i class="fas fa-clock"></i> Monday - Friday: 9:00 AM - 5:00 PM</p>
+            <p><i class="fas fa-clock"></i> Saturday: 10:00 AM - 3:00 PM</p>
+            <p><i class="fas fa-clock"></i> Sunday: Closed</p>
+            <p><i class="fas fa-globe"></i> www.enigmadetectiveagency.com</p>
+          </div>          
+        </div>
+        <div class="col form">
+          <form>
+            <input type="text" id="customerName" placeholder="Name*" required>
+            <input type="number"  id="contactNumber" placeholder="Contact Number*" required>
+            <textarea id="Message" placeholder="Message*" required></textarea>
+            <button id="submit" type="submit" onclick="sendDetailstoWhatsapp()">Send To Whatsapp</button>
+            <a href="tel:8830146053">
+            <button id="call_btn" onclick="makeCall()">Call : 8975051905</button>
+          </a>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About Us</h2>
+      <p>Discover our story in providing camping services.</p>
+      <div class="row company-info">
+        <h3>Our Story</h3>
+        <p>
+          In the labyrinth of mysteries, we wield our keen intellects and unwavering resolve, unraveling enigmas one clue at a time, forging a legacy of justice in the annals of our detective agency.
+          </p>
+      </div>
+      <div class="row mission-vision" style="margin-bottom: 20px;">
+        <h3>Our Mission</h3>
+        <p>To be the beacon of truth in the shadows, to seek justice where it hides, and to bring closure to those lost in the maze of uncertainty With a dedication to uncovering secrets and a commitment to serving our community, we vow to chase down the elusive truth and uphold the values of integrity and righteousness in every case we undertake.
+        </p>
+        <h3>Our Vision</h3>
+        <p>Our vision is to be the foremost guardian of truth, a bastion of integrity in the face of deceit. We aspire to inspire a world where justice prevails, where every mystery finds its resolution, and where trust is the cornerstone of society.</p>
+      </div>
+      </div>
+    </section>
+
+  
+
+    <footer>
+      <div>
+        <span>Copyright © 2023 All Rights Reserved</span>
+        <span class="link">
+            <a href="#">Home</a>
+            <a href="#contact">Contact</a>
+        </span>
+      </div>
+    </footer>
+
+    <script>
+
+
+      function sendDetailstoWhatsapp() {
+        var PhoneNumber = "+918975051905";
+
+        let customerName = document.getElementById('customerName').value;
+        let contactNumber = document.getElementById('contactNumber').value;
+        let Message = document.getElementById('Message').value;
+
+        var url = "https://wa.me/" + PhoneNumber + "?text="
+        + "*Customer Name :* " + customerName + "%0a"
+        + "*Contact Number :* " + contactNumber + "%0a"
+        + "*About :* " + Message + "%0a";
+
+        window.open(url,'_blank').focus();
+      }
+
+        function makeCall() {
+        var phoneNumber = "+918975051905";
+        window.location.href = "tel:" + phoneNumber;
+    }
+
+      document.getElementById("contactNumber").addEventListener("input", function() {
+          if (this.value.length > 10) {
+            alert("Please enter only 10 digits for the contact number.");
+              this.value = this.value.slice(0, 10);
+          }
+
+      });
+
+ // Function to simulate typing effect
+      function typeEffect(element, speed) {
+        const text = element.innerHTML;
+        element.innerHTML = '';
+
+        let i = 0;
+        const typing = setInterval(function() {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(typing);
+          }
+        }, speed);
+      }
+
+      // Call the typing effect function on page load
+      window.onload = function() {
+        const slogan = document.getElementById('homepage_slogan');
+        typeEffect(document.getElementById('typing-text'), 100); // Adjust speed as needed
+      };
+
+  </script>
+
+  </body>
+</html>

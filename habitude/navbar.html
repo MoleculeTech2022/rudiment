@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav>
+        <div class="nav-bar">
+            <i class='bx bx-menu sidebarOpen' ></i>
+            <span class="logo navLogo"><a href="index.html" style="color: black;">HABITUDE</a></span>
+
+            <div class="menu">
+                <div class="logo-toggle">
+                    <span class="logo"><a href="#" style="color: black;margin-left: 50px;">HABITUDE</a></span>
+                    <i class='bx bx-x siderbarClose'></i>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="index.html" style="color:black;">Home</a></li>
+                    <li><a href="notes.php" style="color:black;">Notes</a></li>
+                    <li><a href="subject.php" style="color:black;">Subjects</a></li>
+                    <li><a href="#" style="color:black;">Quiz</a></li>
+                    <li><a href="#" style="color:black;">Maps</a></li>
+                </ul>
+            </div>
+
+            <div class="darkLight-searchBox">
+                <div class="dark-light">
+                    <i class='bx bx-sun sun' style="color:black;"></i>
+                </div>
+
+                <div class="searchBox">
+                   <div class="searchToggle">
+                    <i class='bx bx-x cancel' style="color:black;"></i>
+                    <i class='bx bx-search search' style="color:black;"></i>
+                   </div>
+
+                    <div class="search-field">
+                        <input type="text" id="search_input" placeholder="Search...">
+                        <i class='bx bx-search'></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JavaScript code to focus the search input field when the search icon is clicked -->
+<script>
+    const searchIcon = document.querySelector('.bx-search');
+    const searchInput = document.getElementById('search_input');
+
+    searchIcon.addEventListener('click', function() {
+        searchInput.focus();
+    });
+</script>
+    </nav>
+</body>
+</html>

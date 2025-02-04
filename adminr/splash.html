@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- // custom font link -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Acme&family=Archivo+Black&family=Belanosima:wght@600&family=Open+Sans:wght@700&family=Poppins:wght@100&family=Quicksand:wght@300;500&family=Tilt+Neon&family=Urbanist&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            border: 0;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --hue: 223;
+            --bg: hsl(var(--hue), 10%, 90%);
+            --fg: hsl(var(--hue), 10%, 10%);
+            --primary: hsl(var(--hue), 90%, 55%);
+            --primary-l: hsl(var(--hue), 90%, 65%);
+            --primary-d: hsl(var(--hue), 90%, 45%);
+            --white: hsl(var(--hue), 10%, 100%);
+            --white-d: hsl(var(--hue), 10%, 45%);
+            font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font: 1em/1.5 sans-serif;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+
+        .book,
+        .book__pg-shadow,
+        .book__pg {
+            animation: cover 7s ease-in-out infinite;
+        }
+
+        .book {
+            background-color: var(--primary-l);
+            border-radius: 0.25em;
+            box-shadow:
+                0 0.25em 0.5em hsla(0, 0%, 0%, 0.3),
+                0 0 0 0.25em var(--primary) inset;
+            padding: 0.25em;
+            perspective: 37.5em;
+            /* position: relative; */
+            width: 8em;
+            height: 6em;
+            transform: translate3d(0, 0, 0);
+            transform-style: preserve-3d;
+        }
+
+        .book__pg-shadow,
+        .book__pg {
+            position: absolute;
+            left: 0.25em;
+            width: calc(50% - 0.25em);
+        }
+
+        .book__pg-shadow {
+            animation-name: shadow;
+            background-image: linear-gradient(-45deg, hsla(0, 0%, 0%, 0) 50%, hsla(0, 0%, 0%, 0.3) 50%);
+            filter: blur(0.25em);
+            top: calc(100% - 0.25em);
+            height: 3.75em;
+            transform: scaleY(0);
+            transform-origin: 100% 0%;
+        }
+
+        .book__pg {
+            animation-name: pg1;
+            background-color: var(--white);
+            background-image: linear-gradient(90deg, hsla(var(--hue), 10%, 90%, 0) 87.5%, hsl(var(--hue), 10%, 90%));
+            height: calc(100% - 0.5em);
+            transform-origin: 100% 50%;
+        }
+
+        .book__pg--2,
+        .book__pg--3,
+        .book__pg--4 {
+            background-image:
+                repeating-linear-gradient(hsl(var(--hue), 10%, 10%) 0 0.125em, hsla(var(--hue), 10%, 10%, 0) 0.125em 0.5em),
+                linear-gradient(90deg, hsla(var(--hue), 10%, 90%, 0) 87.5%, hsl(var(--hue), 10%, 90%));
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 2.5em 4.125em, 100% 100%;
+        }
+
+        .book__pg--2 {
+            animation-name: pg2;
+        }
+
+        .book__pg--3 {
+            animation-name: pg3;
+        }
+
+        .book__pg--4 {
+            animation-name: pg4;
+        }
+
+        .book__pg--5 {
+            animation-name: pg5;
+        }
+
+        /* Dark theme */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: hsl(var(--hue), 10%, 30%);
+                --fg: hsl(var(--hue), 10%, 90%);
+            }
+        }
+
+        /* Animations */
+        @keyframes cover {
+
+            from,
+            5%,
+            45%,
+            55%,
+            95%,
+            to {
+                animation-timing-function: ease-out;
+                background-color: var(--primary-l);
+            }
+
+            10%,
+            40%,
+            60%,
+            90% {
+                animation-timing-function: ease-in;
+                background-color: var(--primary-d);
+            }
+        }
+
+        @keyframes shadow {
+
+            from,
+            10.01%,
+            20.01%,
+            30.01%,
+            40.01% {
+                animation-timing-function: ease-in;
+                transform: translate3d(0, 0, 1px) scaleY(0) rotateY(0);
+            }
+
+            5%,
+            15%,
+            25%,
+            35%,
+            45%,
+            55%,
+            65%,
+            75%,
+            85%,
+            95% {
+                animation-timing-function: ease-out;
+                transform: translate3d(0, 0, 1px) scaleY(0.2) rotateY(90deg);
+            }
+
+            10%,
+            20%,
+            30%,
+            40%,
+            50%,
+            to {
+                animation-timing-function: ease-out;
+                transform: translate3d(0, 0, 1px) scaleY(0) rotateY(180deg);
+            }
+
+            50.01%,
+            60.01%,
+            70.01%,
+            80.01%,
+            90.01% {
+                animation-timing-function: ease-in;
+                transform: translate3d(0, 0, 1px) scaleY(0) rotateY(180deg);
+            }
+
+            60%,
+            70%,
+            80%,
+            90%,
+            to {
+                animation-timing-function: ease-out;
+                transform: translate3d(0, 0, 1px) scaleY(0) rotateY(0);
+            }
+        }
+
+        @keyframes pg1 {
+
+            from,
+            to {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(0.4deg);
+            }
+
+            10%,
+            15% {
+                animation-timing-function: ease-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(180deg);
+            }
+
+            20%,
+            80% {
+                animation-timing-function: ease-in;
+                background-color: var(--white-d);
+                transform: translate3d(0, 0, 1px) rotateY(180deg);
+            }
+
+            85%,
+            90% {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(180deg);
+            }
+        }
+
+        @keyframes pg2 {
+
+            from,
+            to {
+                animation-timing-function: ease-in;
+                background-color: var(--white-d);
+                transform: translate3d(0, 0, 1px) rotateY(0.3deg);
+            }
+
+            5%,
+            10% {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(0.3deg);
+            }
+
+            20%,
+            25% {
+                animation-timing-function: ease-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(179.9deg);
+            }
+
+            30%,
+            70% {
+                animation-timing-function: ease-in;
+                background-color: var(--white-d);
+                transform: translate3d(0, 0, 1px) rotateY(179.9deg);
+            }
+
+            75%,
+            80% {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(179.9deg);
+            }
+
+            90%,
+            95% {
+                animation-timing-function: ease-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(0.3deg);
+            }
+        }
+
+        @keyframes pg3 {
+
+            from,
+            10%,
+            90%,
+            to {
+                animation-timing-function: ease-in;
+                background-color: var(--white-d);
+                transform: translate3d(0, 0, 1px) rotateY(0.2deg);
+            }
+
+            15%,
+            20% {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(0.2deg);
+            }
+
+            30%,
+            35% {
+                animation-timing-function: ease-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(179.8deg);
+            }
+
+            40%,
+            60% {
+                animation-timing-function: ease-in;
+                background-color: var(--white-d);
+                transform: translate3d(0, 0, 1px) rotateY(179.8deg);
+            }
+
+            65%,
+            70% {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(179.8deg);
+            }
+
+            80%,
+            85% {
+                animation-timing-function: ease-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(0.2deg);
+            }
+        }
+
+        @keyframes pg4 {
+
+            from,
+            20%,
+            80%,
+            to {
+                animation-timing-function: ease-in;
+                background-color: var(--white-d);
+                transform: translate3d(0, 0, 1px) rotateY(0.1deg);
+            }
+
+            25%,
+            30% {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(0.1deg);
+            }
+
+            40%,
+            45% {
+                animation-timing-function: ease-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(179.7deg);
+            }
+
+            50% {
+                animation-timing-function: ease-in;
+                background-color: var(--white-d);
+                transform: translate3d(0, 0, 1px) rotateY(179.7deg);
+            }
+
+            55%,
+            60% {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(179.7deg);
+            }
+
+            70%,
+            75% {
+                animation-timing-function: ease-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(0.1deg);
+            }
+        }
+
+        @keyframes pg5 {
+
+            from,
+            30%,
+            70%,
+            to {
+                animation-timing-function: ease-in;
+                background-color: var(--white-d);
+                transform: translate3d(0, 0, 1px) rotateY(0);
+            }
+
+            35%,
+            40% {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(0deg);
+            }
+
+            50% {
+                animation-timing-function: ease-in-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(179.6deg);
+            }
+
+            60%,
+            65% {
+                animation-timing-function: ease-out;
+                background-color: var(--white);
+                transform: translate3d(0, 0, 1px) rotateY(0);
+            }
+        }
+
+        .loading-div {
+            text-align: right;
+        }
+
+        .loading-dots {
+            display: inline-block;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #3498db;
+            /* Change the color as needed */
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 3px;
+            /* Adjust spacing between dots as needed */
+            animation: bounce 1s infinite;
+            /* Adjust the animation duration as needed */
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+            /* Delay for the second dot */
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+            /* Delay for the third dot */
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+                /* Adjust the vertical movement as needed */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="book" style="margin-top:70px;margin-right: 40px;">
+        <div class="book__pg-shadow"></div>
+        <div class="book__pg"></div>
+        <div class="book__pg book__pg--2"></div>
+        <div class="book__pg book__pg--3"></div>
+        <div class="book__pg book__pg--4"></div>
+        <div class="book__pg book__pg--5"></div>
+    </div>
+    <div class="loading-div" style="margin-top: -140px; margin-right: 40px;">
+        <span style="font-family: 'Tilt Neon', sans-serif;">Loading</span>
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <br>
+    </div>
+
+    <div class="title" style="margin-top: -300px;margin-right: 50px;">
+        <span style="font-family: 'Tilt Neon', sans-serif;">RUDIMENT V-1.1.2</span>
+    </div>
+
+
+    <script>
+        setTimeout(function () {
+            window.location.href = 'index.php'; // Redirect to the splash screen
+        }, 2000); // Set the duration for the splash screen in milliseconds (3 seconds in this example)
+    </script>
+
+</body>
+
+</html>

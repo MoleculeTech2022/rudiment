@@ -1,0 +1,275 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: 120px;
+    height: auto;
+    cursor: pointer;
+}
+
+.main-content {
+    width: 100%;
+    padding: 20px;
+}
+
+.header {
+    background: linear-gradient(to right, rgb(61, 189, 203), rgb(5, 109, 95));
+    color: rgb(246, 243, 243);
+    text-align: center;
+    padding: 7px;
+    max-width: 60%;
+    margin-left: 20%;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.container {
+    /* max-width: 600px; */
+    max-width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+#instructions {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: auto;
+    font-size: 16px;
+}
+
+#instructions h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+#instructions ul {
+    list-style: none;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+#instructions li {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    color: #555;
+}
+
+#instructions li:before {
+    content: "✔️";
+    margin-right: 10px;
+    color: #0f8d2d;
+}
+
+#instructions select,
+#instructions button {
+    display: block;
+    margin: 15px auto;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+    transition: all 0.3s ease;
+}
+
+#instructions select:hover,
+#instructions button:hover {
+    background-color: #e2e2e2;
+    cursor: pointer;
+}
+
+#instructions select:focus,
+#instructions button:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 85, 179, 0.5);
+}
+
+#startTestBtn {
+    background-color: #007bff;
+    color: #FFFF;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+#startTestBtn:hover {
+    background-color: #0056b3;
+}
+
+#startTestBtn:disabled {
+    background-color: rgb(43, 135, 255);
+    cursor: not-allowed;
+}
+
+/* submit button styling  */
+#quizForm button[type="submit"] {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    /* Modern green color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    /* Rounded corners */
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Smooth hover effect */
+}
+
+#quizForm button[type="submit"]:hover {
+    background-color: #45a049;
+    /* Slightly darker green on hover */
+    transform: translateY(-2px);
+    /* Slight lift on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    /* Enhanced shadow on hover */
+}
+
+#timer {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #f8f9fa;
+    color: #000;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+/* For the test page and questions */
+.test-page {
+    margin-top: 20px;
+}
+
+.question {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.question p {
+    font-weight: bold;
+}
+
+.question {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Wrapper for the radio button and label */
+.radio-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+/* Style the radio buttons */
+.radio-container input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    appearance: none;
+    background-color: white;
+    border: 2px solid #007bff;
+    margin-right: 10px;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+/* When the radio button is checked, change the background of the entire container */
+.radio-container input[type="radio"]:checked+label {
+    background-color: #28a745;
+    /* Green background for the entire box */
+    border-color: #28a745;
+    /* Green border for the box */
+    color: white;
+    /* White text color when selected */
+}
+
+/* Hover effect for radio button (unselected) */
+.radio-container input[type="radio"]:not(:checked):hover {
+    background-color: #f0f0f0;
+    border-color: #007bff;
+}
+
+/* Hover effect for the radio-container */
+.radio-container:hover {
+    background-color: #e0e0e0;
+}
+
+/* Focus style for radio button */
+.radio-container input[type="radio"]:focus {
+    box-shadow: 0 0 5px rgba(0, 85, 179, 0.5);
+}
+
+
+
+
+/* For small screen devices */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 10px;
+    }
+
+    #instructions {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    #startTestBtn {
+        max-width: 100%;
+    }
+
+    .question {
+        width: 100%;
+    }
+}

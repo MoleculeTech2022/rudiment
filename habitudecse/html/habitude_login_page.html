@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitude-Login Page</title>
+    <!-- CSS File -->
+    <link href="../style/login_page.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Student Login</h2>
+        <form action="../php/login.php" method="POST">
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email" name="student_email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password" name="student_password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" style="margin-bottom: 15px;">Login</button>
+            </div>
+            <a href="sign_up.php" class="create-account-link" style="margin-top: 20px;">Create New Account</a>
+        </form>
+    </div>
+</body>
+</html>

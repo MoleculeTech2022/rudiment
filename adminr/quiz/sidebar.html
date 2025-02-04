@@ -1,0 +1,240 @@
+<?php
+include "../checklogin.php"; 
+
+// if (!isset($_SESSION['username'])) {
+//   // header("Location: login.php");
+//   // exit();
+// }
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <title>Document</title> -->
+
+  <!-- Boxicons CSS -->
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+
+  <style>
+    /* Google Fonts - Poppins */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100%;
+      background: #fdfeff;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 260px;
+      padding: 20px 0;
+      /* background-color: rgb(27, 61, 88); */
+      background-color: rgb(42, 156, 144);
+      box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin: 0 24px;
+    }
+
+    .logo .menu-icon {
+      color: #333;
+      font-size: 24px;
+      margin-right: 14px;
+    }
+
+    .logo .logo-name {
+      color: #333;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .sidebar-content {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px 16px;
+    }
+
+    .list {
+      list-style: none;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      padding: 14px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .nav-link:hover {
+      background-color: #4070f4;
+    }
+
+    .icon {
+      margin-right: 14px;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .link {
+      font-size: 16px;
+      color: #ffffff;
+      font-weight: 400;
+    }
+
+    .nav-link:hover .icon,
+    .nav-link:hover .link {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo" style="display: flex; align-items: center; margin: 0 24px;">
+      <i class="bx bx-menu menu-icon" style="color: #fff; font-size: 24px; margin-right: 14px;"></i>
+      <a href="index.php" style="text-decoration: none;">
+        <span class="logo-name" style="color: #fff; font-size: 28px; font-weight: bold;">RUDIMENT</span>
+      </a>
+    </div>
+
+    <!-- BEGIN OF Sidebar - with all button  -->
+    <div class="sidebar-content" style="margin-top:-20px;">
+      <ul class="lists">
+        <li class="list">
+          <!-- // blue background for sidebar background-color: #4070f4; -->
+          <a href="../index" class="nav-link" style="border: 1px solid #fff;">
+            <i class="bx bx-home-alt icon"></i>
+            <span class="link">Dashboard</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="../students" class="nav-link" style="border: 1px solid #fff;">
+            <i class="bx bx-bar-chart-alt-2 icon"></i>
+            <span class="link">Students</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="../payments" class="nav-link" style="border: 1px solid #fff;">
+            <i class="bx bx-message-rounded icon"></i>
+            <span class="link">Payments</span>
+          </a>
+        </li>
+        <li class="list">
+
+          <a href="../teachers" class="nav-link" style="border: 1px solid #fff;">
+            <i class="bx bx-bell icon"></i>
+            <span class="link">Teachers</span>
+          </a>
+        </li> 
+        <?php
+        if ($_SESSION['role'] == 1) {
+          ?>
+        <li class="list">
+          <a href="../expense" class="nav-link" style="border: 1px solid #fff;">
+            <i class="bx bx-heart icon"></i>
+            <span class="link">Expense</span>
+          </a>
+        </li>
+        <?php
+        }
+        ?>
+
+        <li class="list">
+          <a href="../report" class="nav-link" style="border: 1px solid #fff;">
+            <i class="bx bx-folder-open icon"></i>
+            <span class="link">Report</span>
+          </a>
+        </li>
+
+        <li class="list">
+          <a href="../others" class="nav-link" style="border: 1px solid #fff">
+            <i class="bx bx-pie-chart-alt-2 icon"></i>
+            <span class="link">Others</span>
+          </a>
+        </li>
+
+      </ul>
+
+      <div class="bottom-content">
+        <li class="list">
+          <a href="../settings" class="nav-link" style="border: 1px solid #fff;">
+            <i class="bx bx-cog icon"></i>
+            <span class="link">Settings</span>
+          </a>
+        </li>
+      </div>
+    </div>
+    <!-- END OF : Sidebar - with all button  -->
+  </nav>
+  <!-- END OF : Navbar  -->
+  <div class="top-navigation"
+    style="width:100%;height:70px;background-color: #fff;box-shadow: 1px 1px 1px 1px #edeaea;">
+    <i class="bx bx-menu menu-icon"
+      style="color: rgb(27, 61, 88); font-size: 30px; margin-left: 290px;margin-top: 25px;"></i>
+
+    <div class="search" style="margin-top: -30px;">
+      <!-- <input type="text" placeholder="Search..."
+        style="width:300px;height:35px;margin-left: 340px;padding: 5px;border-radius: 5px;border-width: 1px;"> -->
+      <span style="margin-left:350px;">Admin Portal</span>
+    </div>
+
+    <div class="buttons-icons" style="margin-top:-52px;margin-left: 230px;">
+      <i class="fa fa-bell" style="margin-top:-150px;margin-left:700px;"></i>
+      <button
+        style="height:30px;width:90px;margin-top:20px;margin-left:20px;background-color:rgb(23, 201, 255);color:#fff;border:none;border-radius: 5px;">
+        <?php echo $_SESSION['username'] ?>
+      </button>
+
+      <select id="switchDropdown" style="height:30px;border-radius:5px;margin-top:20px;margin-left:20px;">
+        <option>Switch</option>
+        <option value="../adminh/index.php">HABITUDE</option>
+        <option>Tuition</option>
+      </select>
+      <a href="logout.php">
+        <button
+          style="height:30px;width:70px;margin-top:20px;margin-left:20px;background-color:rgb(253, 30, 75);color:#fff;border:none;border-radius: 5px;">LOGOUT</button>
+      </a>
+    </div>
+
+  </div>
+
+  <select id="switchDropdown" style="height:30px; border-radius:5px; margin-top:20px; margin-left:20px;">
+    <option>Switch</option>
+    <option value="adminh/index.php">HABITUDE</option>
+    <option value="tuition/tuition.php">Tuition</option>
+  </select>
+
+  <script>
+    document.getElementById('switchDropdown').addEventListener('change', function () {
+      var selectedOption = this.options[this.selectedIndex];
+      if (selectedOption.value) {
+        window.location.href = selectedOption.value;
+      }
+    });
+  </script>
+
+</body>
+
+</html>
